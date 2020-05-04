@@ -5,7 +5,14 @@ const Schema = mongoose.Schema;
 const DataSchema = new Schema(
   {
     id: Number,
-    message: String
+    message: String,
+    type: String,
+    date: String,
+    periodStart: String,
+    periodEnd: String,
+    user: String,
+    amount: Number,
+    notes: String
   },
   { timestamps: true }
 );

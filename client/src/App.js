@@ -7,6 +7,13 @@ class App extends Component {
     data: [],
     id: 0,
     message: null,
+    type: null,
+    date: null,
+    periodStart: null,
+    periodEnd: null,
+    user: null,
+    amount: null,
+    notes: null,
     intervalIsSet: false,
     idToDelete: null,
     idToUpdate: null,
@@ -48,7 +55,7 @@ class App extends Component {
 
   // our put method that uses our backend api
   // to create new query into our data base
-  putDataToDB = (message) => {
+  putDataToDB = (message, type, date, periodStart, periodEnd, user, amount, notes) => {
     let currentIds = this.state.data.map((data) => data.id);
     let idToBeAdded = 0;
     while (currentIds.includes(idToBeAdded)) {
@@ -58,6 +65,13 @@ class App extends Component {
     axios.post('http://localhost:3001/api/putData', {
       id: idToBeAdded,
       message: message,
+      type: type,
+      date: date,
+      periodStart: periodStart,
+      periodEnd: periodEnd,
+      user: user,
+      amount: amount,
+      notes: notes
     });
   };
 
@@ -121,7 +135,58 @@ class App extends Component {
             placeholder="add something in the database"
             style={{ width: '200px' }}
           />
-          <button onClick={() => this.putDataToDB(this.state.message)}>
+          <input
+            type="text"
+            onChange={(e) => this.setState({ type: e.target.value })}
+            placeholder="choose type"
+            style={{ width: '200px' }}
+          />
+          <input
+            type="text"
+            onChange={(e) => this.setState({ date: e.target.value })}
+            placeholder="payment date"
+            style={{ width: '200px' }}
+          />
+          <input
+            type="text"
+            onChange={(e) => this.setState({ periodStart: e.target.value })}
+            placeholder="period starts"
+            style={{ width: '200px' }}
+          />
+          <input
+            type="text"
+            onChange={(e) => this.setState({ periodEnd: e.target.value })}
+            placeholder="period ends"
+            style={{ width: '200px' }}
+          />
+          <input
+            type="text"
+            onChange={(e) => this.setState({ user: e.target.value })}
+            placeholder="username"
+            style={{ width: '200px' }}
+          />
+          <input
+            type="text"
+            onChange={(e) => this.setState({ amount: e.target.value })}
+            placeholder="amount"
+            style={{ width: '200px' }}
+          />
+          <input
+            type="text"
+            onChange={(e) => this.setState({ notes: e.target.value })}
+            placeholder="notes"
+            style={{ width: '200px' }}
+          />
+          <button onClick={() => this.putDataToDB(
+            this.state.message,
+            this.state.type,
+            this.state.date,
+            this.state.periodStart,
+            this.state.periodEnd,
+            this.state.user,
+            this.state.amount,
+            this.state.notes
+            )}>
             ADD
           </button>
         </div>

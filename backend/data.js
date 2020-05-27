@@ -7,9 +7,9 @@ const DataSchema = new Schema(
     id: Number,
     message: String,
     type: String,
-    date: String,
-    periodStart: String,
-    periodEnd: String,
+    date: Date,
+    periodStart: Date,
+    periodEnd: Date,
     user: String,
     amount: Number,
     notes: String

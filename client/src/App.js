@@ -166,7 +166,8 @@ class App extends Component {
             style={{ width: '200px' }}
           />
           <input
-            type="text"
+            type="number"
+            min="1.00"
             onChange={(e) => this.setState({ amount: e.target.value })}
             placeholder="amount"
             style={{ width: '200px' }}
